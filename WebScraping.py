@@ -370,7 +370,6 @@ window.addEventListener('load', function() {{
         background: linear-gradient(90deg, #666 60%, #333 100%);
         transform: scale(1.04);
     }}
-    /* Pop-up */
     .popup-bg {{
         display: none;
         position: fixed;
@@ -395,8 +394,8 @@ window.addEventListener('load', function() {{
         box-shadow: 0 4px 24px #000c;
         padding: 32px 28px 24px 28px;
         min-width: 320px;
-        width: 480px; /* Largura padrão para pop-ups de formulário */
-        max-width: 95%; /* Garante que caiba em telas pequenas */
+        width: 480px;
+        max-width: 95%;
         color: #eee;
         display: flex;
         flex-direction: column;
@@ -408,7 +407,6 @@ window.addEventListener('load', function() {{
         from {{ transform: scale(0.9); opacity: 0; }}
         to {{ transform: scale(1); opacity: 1; }}
     }}
-    /* Tamanhos específicos para pop-ups com tabelas ou conteúdo maior */
     #popup-list-bg .popup,
     #popup-edit-centrais-bg .popup {{
         width: 90vw;
@@ -516,13 +514,13 @@ window.addEventListener('load', function() {{
     }}
     .table-responsive {{
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Melhora a rolagem em iOS */
-        border-radius: 12px; /* Garante que a sombra e borda acompanhem a rolagem */
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
     }}
     table.dataframe td {{
         vertical-align: middle;
     }}
-    /* Tabela da pop-up de usuários */
+
     .usuarios-table {{
         border-collapse: collapse;
         width: 100%;
@@ -538,7 +536,7 @@ window.addEventListener('load', function() {{
     .usuarios-table th, .usuarios-table td {{
         border: 1px solid #444;
         padding: 10px 12px;
-        text-align: center; /* Centraliza o texto */
+        text-align: center; 
         vertical-align: middle;
     }}
     .usuarios-table th {{
@@ -565,7 +563,7 @@ window.addEventListener('load', function() {{
     }}
     .action-buttons button {{
         flex: 1;
-        min-width: 80px; /* Evita que os botões fiquem muito pequenos */
+        min-width: 80px;
     }}
     #usuarios-tabela {{
         max-height: 400px;
@@ -574,7 +572,7 @@ window.addEventListener('load', function() {{
         width: 100%;
         display: block;
     }}
-    /* Animação para destacar novas linhas na tabela */
+
     .highlight-row {{
         animation: highlight 1.5s ease-in-out;
     }}
@@ -587,7 +585,7 @@ window.addEventListener('load', function() {{
         }}
     }}
 
-    /* Media Queries para Responsividade */
+
     @media (max-width: 768px) {{
         .container {{
             width: 100%;
@@ -609,9 +607,6 @@ window.addEventListener('load', function() {{
     }}
 </style>
 <script>
-// --- INÍCIO DA LÓGICA DE RECARREGAMENTO INTELIGENTE ---
-// Este script verifica se o conteúdo do arquivo mudou (usando um timestamp)
-// e só recarrega a página se houver uma atualização.
 function reloadWithTransition() {{
     document.body.classList.add('loading');
     setTimeout(() => {{
@@ -619,9 +614,8 @@ function reloadWithTransition() {{
     }}, 300);
 }}
 
-// Verifica mudanças a cada 15 segundos
+
 setInterval(async () => {{
-    // Não executa a verificação se alguma pop-up estiver aberta
     if (document.querySelector('.popup-bg[style*="display: flex"]')) {{
         console.log("Pop-up aberta, atualização pausada.");
         return;
@@ -642,10 +636,10 @@ setInterval(async () => {{
         console.error('Erro ao verificar atualizações:', error);
     }}
 }}, 15000);
-// --- FIM DA LÓGICA DE RECARREGAMENTO INTELIGENTE ---
 
 
-// Função global para excluir central
+
+
 function excluirCentral(numero_serie, btn) {{
     if (!confirm('Tem certeza que deseja excluir esta central?')) return;
     fetch('excluir_central', {{
@@ -667,10 +661,9 @@ function excluirCentral(numero_serie, btn) {{
     }});
 }}
 
-// <-- REMOVIDO: Funções startRefresh e stopRefresh, pois eram redundantes.
+
 
 window.onload = function() {{
-    // <-- REMOVIDO: Chamada a startRefresh()
     fetch('usuarios.csv').then(r => r.text()).then(csv => {{
         localStorage.setItem('usuarios_csv', csv);
     }});
@@ -682,12 +675,10 @@ function openPopup() {{
     document.getElementById('numero').value = '';
     document.getElementById('nome').value = '';
     document.getElementById('numero_serie').value = '';
-    // <-- REMOVIDO: Chamada a stopRefresh()
 }}
 
 function closePopup() {{
     document.getElementById('popup-bg').style.display = 'none';
-    // <-- REMOVIDO: Chamada a startRefresh()
 }}
 
 function getUsuariosExistentes() {{
@@ -745,7 +736,6 @@ function confirmarCadastro() {{
     }});
 }}
 
-// --- FUNÇÕES PARA LISTAGEM DE USUÁRIOS ---
 function carregarUsuariosTabela() {{
     fetch('usuarios.csv').then(r => r.text()).then(csv => {{
         let linhas = csv.trim().split('\\n');
@@ -838,7 +828,6 @@ function editarUsuario(numero, numero_serie, nomeAtual, btn) {{
 
 function openListPopup() {{
     document.getElementById('popup-list-bg').style.display = 'flex';
-    // <-- REMOVIDO: Chamada a stopRefresh()
     carregarUsuariosTabela();
     setTimeout(() => {{
         let tabela = document.getElementById('usuarios-tabela');
@@ -878,20 +867,18 @@ function apagarUsuario(numero, numero_serie, btn) {{
     }});
 }}
 
-// --- POPUP NOVO DADO ---
+
 function mostrarNovoDadoPopup(dados) {{
     const popupBg = document.getElementById('novo-dado-popup-bg');
     const popupDados = document.getElementById('novo-dado-popup-dados');
     
     if (popupBg && popupDados) {{
-        // <-- REMOVIDO: Chamada a stopRefresh()
         popupBg.style.display = 'flex';
         popupDados.innerText = dados;
     }}
 }}
 function fecharNovoDadoPopup() {{
     document.getElementById('novo-dado-popup-bg').style.display = 'none';
-    // <-- REMOVIDO: Chamada a startRefresh()
 }}
 
 document.addEventListener('DOMContentLoaded', function() {{
@@ -909,15 +896,13 @@ function destacarNovaLinha(rowElement) {{
     }}, 1500);
 }}
 
-/* --- FUNÇÕES PARA EDIÇÃO DE CENTRAIS --- */
+
 function openEditCentraisPopup() {{
     document.getElementById('popup-edit-centrais-bg').style.display = 'flex';
-    // <-- REMOVIDO: Chamada a stopRefresh()
     carregarEditCentrais();
 }}
 function closeEditCentraisPopup() {{
     document.getElementById('popup-edit-centrais-bg').style.display = 'none';
-    // <-- REMOVIDO: Chamada a startRefresh()
 }}
 function carregarEditCentrais() {{
     fetch('centrais.csv').then(r => r.text()).then(csv => {{
@@ -969,7 +954,7 @@ document.getElementById('popup-edit-centrais-bg').addEventListener('open', funct
     carregarEditCentrais();
 }});
 
-/* --- FIM DAS FUNÇÕES DE EDIÇÃO DE CENTRAIS --- */
+
 
 var centralEditando = null;
 
@@ -979,11 +964,9 @@ function abrirEditarCentralPopup(numero_serie, nome) {{
     document.getElementById('editar-nome-central').value = nome;
     document.getElementById('popup-editar-central-erro').innerText = '';
     document.getElementById('popup-editar-central-bg').style.display = 'flex';
-    // <-- REMOVIDO: Chamada a stopRefresh()
 }}
 function fecharEditarCentralPopup() {{
     document.getElementById('popup-editar-central-bg').style.display = 'none';
-    // <-- REMOVIDO: Chamada a startRefresh()
 }}
 function confirmarEditarCentral() {{
     var numero_serie_novo = document.getElementById('editar-numero-serie').value.trim();
@@ -1012,19 +995,17 @@ function confirmarEditarCentral() {{
     }});
 }}
 
-// --- POPUP NOVA CENTRAL ---
+
 function abrirNovaCentralPopup() {{
     document.getElementById('popup-nova-central-bg').style.display = 'flex';
     document.getElementById('popup-nova-central-erro').innerText = '';
     document.getElementById('nova-central-numero-serie').value = '';
     document.getElementById('nova-central-nome').value = '';
     popupNovaCentralAberta = true;
-    // <-- REMOVIDO: Chamada a stopRefresh()
 }}
 function fecharNovaCentralPopup() {{
     document.getElementById('popup-nova-central-bg').style.display = 'none';
     popupNovaCentralAberta = false;
-    // <-- REMOVIDO: Chamada a startRefresh()
 }}
 function confirmarNovaCentral() {{
     var numero_serie = document.getElementById('nova-central-numero-serie').value.trim();
