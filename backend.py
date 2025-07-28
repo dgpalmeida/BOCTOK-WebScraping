@@ -22,7 +22,6 @@ def is_rate_limited(ip):
     return False
 
 def escape_csv_formula(value):
-    """Protege contra injeções de CSV escapando caracteres especiais, exceto para '---'."""
     if value == "---":
         return value
     if isinstance(value, str) and value.startswith(('=', '+', '-', '@')):
@@ -30,7 +29,6 @@ def escape_csv_formula(value):
     return value
 
 def carregar_centrais():
-    """Carrega os dados de centrais a partir do arquivo CSV."""
     centrais = {}
     if os.path.exists('centrais.csv'):
         with open('centrais.csv', encoding='utf-8') as f:
@@ -375,14 +373,12 @@ def excluir_central():
 
 
 def validate_html_content(html_content):
-    """Valida se o conteúdo HTML é válido e não está vazio"""
     if not html_content or len(html_content.strip()) < 100:
         return False
     required_elements = ['<!DOCTYPE html>', '<html', '<head', '<body']
     return all(element in html_content for element in required_elements)
 
 def get_default_html():
-    """Retorna o HTML padrão quando não há dados disponíveis"""
     return """
     <!DOCTYPE html>
     <html>
@@ -420,7 +416,6 @@ def get_default_html():
 @app.route('/')
 @requires_auth_if_external
 def index():
-    """Rota principal que serve o HTML mais recente."""
     try:
         if os.path.exists('tabela_extraida.html'):
             with open('tabela_extraida.html', 'r', encoding='utf-8') as f:
