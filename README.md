@@ -6,11 +6,15 @@ Uma ferramenta de ponta para automatizar a análise de ocorrências de centrais 
 
 ## 🚀 Visão Geral
 
+![Screenshot da Aplicação](./assets/Tela_principal.png)
+
 O **Boctok** é um programa para Windows que simplifica o acompanhamento dos eventos no sistema JFL Active Net 3. Ele opera discretamente, lendo a página de eventos e avisando você sobre novas ocorrências assim que acontecem.
 
 Ele dispensa o acompanhamento manual e as atualizações de página, mostrando os dados numa interface web moderna e com atualização automática.
 
 ## ✨ Principais Funcionalidades
+
+![GIF Funções](./assets/pop-ups.gif)
 
 *   **Monitoramento Contínuo:** Realiza a verificação da página de eventos em tempo real, identificando novas ocorrências assim que são registradas.
 *   **Notificações Seletivas:** Emite alertas sonoros e visuais para eventos críticos, com a funcionalidade de ignorar ocorrências de rotina (ex: ativação e desativação do sistema).
