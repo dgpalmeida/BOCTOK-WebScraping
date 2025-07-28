@@ -1,0 +1,25 @@
+# Arquivos de dados específicos do ambiente - NÃO ENVIAR!
+usuarios.csv
+centrais.csv
+
+# Arquivos gerados pelo programa
+tabela_extraida.html
+tabela_extraida.backup.html
+# Arquivos e pastas gerados pelo cx_Freeze
+build/
+dist/
+
+# Arquivo executável gerado
+Boctok.exe
+
+# Cache e arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de ambiente virtual (se você usar)
+venv/
+.venv/
+env/
+.env
