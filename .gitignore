@@ -3,7 +3,6 @@ usuarios.csv
 centrais.csv
 
 # Arquivos gerados pelo programa
-tabela_extraida.html
 tabela_extraida.backup.html
 # Arquivos e pastas gerados pelo cx_Freeze
 build/
